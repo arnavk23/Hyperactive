@@ -218,6 +218,19 @@ class TorchExperiment(BaseExperiment):
         from torch.utils.data import DataLoader
 
         class SimpleLightningModule(L.LightningModule):
+            """Minimal LightningModule used for tests.
+
+            Simple classification model with a small feed-forward network.
+
+            Parameters
+            ----------
+            input_dim : int, default=10
+                Input feature dimension.
+            hidden_dim : int, default=16
+                Hidden layer size.
+            lr : float, default=1e-3
+                Learning rate for optimizer.
+            """
             def __init__(self, input_dim=10, hidden_dim=16, lr=1e-3):
                 super().__init__()
                 self.save_hyperparameters()
@@ -249,6 +262,13 @@ class TorchExperiment(BaseExperiment):
                 return torch.optim.Adam(self.parameters(), lr=self.lr)
 
         class RandomDataModule(L.LightningDataModule):
+            """Minimal LightningDataModule producing random classification data for tests.
+
+            Parameters
+            ----------
+            batch_size : int, default=32
+                Batch size for the dataloaders.
+            """
             def __init__(self, batch_size=32):
                 super().__init__()
                 self.batch_size = batch_size
@@ -280,6 +300,20 @@ class TorchExperiment(BaseExperiment):
         }
 
         class RegressionModule(L.LightningModule):
+            """Minimal regression LightningModule used for tests.
+
+            Builds a feed-forward model that outputs a single continuous value
+            and implements the training/validation steps using MSE loss.
+
+            Parameters
+            ----------
+            num_layers : int, default=2
+                Number of hidden layers.
+            hidden_size : int, default=32
+                Hidden layer width.
+            dropout : float, default=0.1
+                Dropout probability between layers.
+            """
             def __init__(self, num_layers=2, hidden_size=32, dropout=0.1):
                 super().__init__()
                 self.save_hyperparameters()
@@ -318,6 +352,15 @@ class TorchExperiment(BaseExperiment):
                 return torch.optim.SGD(self.parameters(), lr=0.01)
 
         class RegressionDataModule(L.LightningDataModule):
+            """Minimal LightningDataModule that generates random regression data for tests.
+
+            Parameters
+            ----------
+            batch_size : int, default=16
+                Batch size for the dataloaders.
+            num_samples : int, default=150
+                Total number of synthetic samples to generate.
+            """
             def __init__(self, batch_size=16, num_samples=150):
                 super().__init__()
                 self.batch_size = batch_size
