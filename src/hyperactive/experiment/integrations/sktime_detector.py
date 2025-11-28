@@ -269,3 +269,15 @@ class SktimeDetectorExperiment(BaseExperiment):
             return [params_more]
         else:
             return [params_default]
+
+    @classmethod
+    def _get_score_params(cls):
+        """Return settings for testing score/evaluate functions.
+
+        The returned list should match the length of ``get_test_params()`` and
+        contain dictionaries of hyperparameter settings that are valid
+        inputs for ``score``/``evaluate`` when an instance is created from the
+        corresponding element of ``get_test_params()``.
+        """
+        # For the simple detector tests, an empty dict of params is adequate.
+        return [{}]

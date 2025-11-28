@@ -27,6 +27,7 @@ class TSDetectorOptCv(_DelegatedDetector):
         "authors": "arnavk23",
         "maintainers": "fkiraly",
         "python_dependencies": "sktime",
+        "object_type": "optimizer",
     }
 
     _delegate_name = "best_detector_"
