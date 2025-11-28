@@ -28,10 +28,5 @@ jobs:
         env:
           PYTHONPATH: src
         run: |
-          python - <<'PY'
-import importlib
-importlib.import_module('hyperactive.experiment.integrations.sktime_detector')
-importlib.import_module('hyperactive.integrations.sktime._detector')
-print('imports ok')
-PY
+          python -c "import importlib; importlib.import_module('hyperactive.experiment.integrations.sktime_detector'); importlib.import_module('hyperactive.integrations.sktime._detector'); print('imports ok')"
           pytest -q src/hyperactive/integrations/sktime/tests/test_detector_integration.py -q || true
